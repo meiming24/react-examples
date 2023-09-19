@@ -7,64 +7,7 @@ htmlWebpackPlugin.options.scripts = htmlWebpackPlugin.options.scripts || []
 %><!DOCTYPE html>
 <html lang="<%= htmlWebpackPlugin.options.lang %>"<% if (htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>>
   <head>
-    <meta charset="utf-8">
-    <meta content="ie=edge" http-equiv="x-ua-compatible"><%
-
-    if (htmlWebpackPlugin.options.baseHref) { %>
-    <base href="<%= htmlWebpackPlugin.options.baseHref %>"><%
-    } %><%
-
-    if (Array.isArray(htmlWebpackPlugin.options.meta)) { %><%
-      for (item of htmlWebpackPlugin.options.meta) { %>
-    <meta<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %>><%
-      } %><%
-    } %><%
-
-    %>
-    <title><%= htmlWebpackPlugin.options.title %></title><%
-
-    if (htmlWebpackPlugin.files.favicon) { %>
-    <link href="<%= htmlWebpackPlugin.files.favicon %>" rel="shortcut icon" /><%
-    } %><%
-
-    if (htmlWebpackPlugin.options.mobile) { %>
-    <meta content="width=device-width, initial-scale=1" name="viewport"><%
-    } %><%
-
-    for (item of htmlWebpackPlugin.options.links) { %><%
-      if (typeof item === 'string' || item instanceof String) { item = { href: item, rel: 'stylesheet' } } %>
-    <link<% for (key in item) { %> <%= key %>="<%= item[key] %>"<% } %> /><%
-    } %><%
-
-    for (key in htmlWebpackPlugin.files.css) { %><%
-      if (htmlWebpackPlugin.files.cssIntegrity) { %>
-    <link
-      href="<%= htmlWebpackPlugin.files.css[key] %>"
-      rel="stylesheet"
-      integrity="<%= htmlWebpackPlugin.files.cssIntegrity[key] %>"
-      crossorigin="<%= webpackConfig.output.crossOriginLoading %>" /><%
-      } else { %>
-    <link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet" /><%
-      } %><%
-    } %><%
-    if (htmlWebpackPlugin.options.headHtmlSnippet) { %>
-    <%= htmlWebpackPlugin.options.headHtmlSnippet %><%
-    } %>
-    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
-    <script>
-      if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-        }, false);
-      }
-      if(!window.Promise) {
-        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
-      }
-    </script>
-    <style>
-    #root,body,html{height:100%}.async_script{display:none}.loader,.loader:after,.loader:before{background:#ed8c3d;-webkit-animation:load1 1s infinite ease-in-out;animation:load1 1s infinite ease-in-out;width:1em;height:4em}.loader{top:35%;color:#fff;text-indent:-9999em;margin:88px auto;position:relative;font-size:11px;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);-webkit-animation-delay:-.16s;animation-delay:-.16s}.loader:after,.loader:before{position:absolute;top:0;content:''}.loader:before{left:-1.5em;-webkit-animation-delay:-.32s;animation-delay:-.32s}.loader:after{left:1.5em}@-webkit-keyframes load1{0%,100%,80%{box-shadow:0 0;height:4em}40%{box-shadow:0 -2em;height:5em}}@keyframes load1{0%,100%,80%{box-shadow:0 0;height:4em}40%{box-shadow:0 -2em;height:5em}}
-    </style>
-  </head>
+  </head>  
   <body><%
     if (htmlWebpackPlugin.options.unsupportedBrowser) { %>
     <style>.unsupported-browser { display: none; }</style>
@@ -76,14 +19,6 @@ htmlWebpackPlugin.options.scripts = htmlWebpackPlugin.options.scripts || []
 
     if (htmlWebpackPlugin.options.bodyHtmlSnippet) { %>
     <%= htmlWebpackPlugin.options.bodyHtmlSnippet %><%
-    } %><%
-
-    if (htmlWebpackPlugin.options.appMountId) { %>
-    <div id="<%= htmlWebpackPlugin.options.appMountId %>"><%
-      if (htmlWebpackPlugin.options.appMountHtmlSnippet) { %>
-    <%= htmlWebpackPlugin.options.appMountHtmlSnippet %><%
-      } %>
-    </div><%
     } %><%
 
     for (item of htmlWebpackPlugin.options.appMountIds) { %>
